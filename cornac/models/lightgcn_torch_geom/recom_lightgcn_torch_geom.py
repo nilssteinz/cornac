@@ -136,7 +136,7 @@ class LightGCN_geom(Recommender, ANNMixin):
             train_set.uir_tuple[2],
             # size=[self.total_users, self.total_items],
         ).long()
-        self.graph = self.graph_data.coalesce().indices()
+        self.graph = self.graph_data.coalesce().indices().to(device)
 
         model = LightGCN(
             self.total_users + self.total_items,
@@ -173,8 +173,8 @@ class LightGCN_geom(Recommender, ANNMixin):
                 optimizer.zero_grad()
                 edge_label_index = torch.cat(
                     [
-                        torch.sparse.Tensor([batch_user, batch_pos]).long(),
-                        torch.sparse.Tensor([batch_user, batch_neg]).long(),
+                        torch.sparse.Tensor([batch_user, batch_pos]).long().to(device),
+                        torch.sparse.Tensor([batch_user, batch_neg]).long().to(device),
                     ],
                     dim=1,
                 )
