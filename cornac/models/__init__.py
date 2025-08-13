@@ -85,3 +85,6 @@ from .vaecf import VAECF
 from .vbpr import VBPR
 from .vmf import VMF
 from .wmf import WMF
+
+
+from .lightgcn_torch_geom import LightGCN_geom
