@@ -165,8 +165,8 @@ class SBPR(BPR):
         if not self.trainable:
             return self
         
-        X, user_counts, user_ids = self._prepare_data()
-        s_item_ids, s_item_counts, s_indptr = self._prepare_social_data()
+        X, user_counts, user_ids = self._prepare_data(train_set)
+        s_item_ids, s_item_counts, s_indptr = self._prepare_social_data(train_set)
 
         # construct random generators
         cdef:
